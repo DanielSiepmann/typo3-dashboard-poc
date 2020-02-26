@@ -1,0 +1,23 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  DanielSiepmann\DashboardPoc\:
+    resource: '../Classes/*'
+
+  DanielSiepmann\DashboardPoc\Dashboard\Widgets\Rss\Typo3IncNews:
+    class: 'DanielSiepmann\DashboardPoc\Widgets\RssWidget'
+    arguments:
+      $identifier: 'typo3IncNews'
+      $options:
+          rssFile: 'https://typo3.com/blog/blog.recent.xml'
+          title: 'TYPO3 Inc. Blog posts'
+          description: 'Recent blog posts by TYPO3 Inc.'
+          moreItemsLink: 'https://typo3.com/blog'
+          moreItemsText: 'TYPO3 Inc. blog'
+    tags:
+      - name: 'dashboard.widget'
+        identifier: 'typo3IncNews'
+        widgetGroups: 'typo3'

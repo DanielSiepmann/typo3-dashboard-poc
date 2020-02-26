@@ -1,0 +1,27 @@
+{
+    "name": "danielsiepmann/dashboard-poc",
+    "description": "Proof of Concept for alternative Widget API.",
+    "type": "typo3-cms-extension",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Daniel Siepmann",
+            "email": "coding@daniel-siepmann.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "DanielSiepmann\\DashboardPoc\\": "Classes/"
+        }
+    },
+    "require": {
+        "php": "^7.3.0",
+        "typo3/cms-core": "*",
+        "typo3/cms-dashboard": "*"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "dashboard_poc"
+        }
+    }
+}
