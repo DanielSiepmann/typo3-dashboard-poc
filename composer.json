@@ -20,6 +20,9 @@
         "typo3/cms-dashboard": "*"
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        },
         "typo3/cms": {
             "extension-key": "dashboard_poc"
         }
