@@ -12,12 +12,41 @@ services:
     arguments:
       $identifier: 'typo3IncNews'
       $options:
-          rssFile: 'https://typo3.com/blog/blog.recent.xml'
-          title: 'TYPO3 Inc. Blog posts'
-          description: 'Recent blog posts by TYPO3 Inc.'
-          moreItemsLink: 'https://typo3.com/blog'
-          moreItemsText: 'TYPO3 Inc. blog'
+        rssFile: 'https://typo3.com/blog/blog.recent.xml'
+        title: 'TYPO3 Inc. Blog posts'
+        description: 'Recent blog posts by TYPO3 Inc.'
+        moreItemsLink: 'https://typo3.com/blog'
+        moreItemsText: 'TYPO3 Inc. blog'
     tags:
       - name: 'dashboard.widget'
         identifier: 'typo3IncNews'
         widgetGroups: 'typo3'
+
+  DanielSiepmann\DashboardPoc\Dashboard\Widgets\DoughnutChart\ContentTypes:
+    class: 'DanielSiepmann\DashboardPoc\Widgets\DoughnutChartWidget'
+    arguments:
+      $identifier: 'contentTypes'
+      $options:
+        title: 'Content Element Types'
+        description: 'Number of content elements per type.'
+        chartData: '@DanielSiepmann\DashboardPoc\DataProvider\Ctypes'
+    tags:
+      - name: 'dashboard.widget'
+        identifier: 'contentTypes'
+        widgetGroups: 'systemInfo'
+
+  DanielSiepmann\DashboardPoc\DataProvider\Ctypes:
+    factory:
+      - '@DanielSiepmann\DashboardPoc\DataProvider'
+      - 'contentTypes'
+
+  DanielSiepmann\DashboardPoc\DataProvider:
+    arguments:
+      $ttContentQueryBuilder: '@DanielSiepmann\DashboardPoc\DI\DatabaseConnection\TtContent'
+
+  DanielSiepmann\DashboardPoc\DI\DatabaseConnection\TtContent:
+    factory:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+      - 'getQueryBuilderForTable'
+    arguments:
+      - 'tt_content'
